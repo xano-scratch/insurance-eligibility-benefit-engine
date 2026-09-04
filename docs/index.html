@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insurance Eligibility &amp; Benefit Engine — XanoTS template</title>
+    <meta
+      name="description"
+      content="One governed API that decides insurance eligibility the same way for every system, and returns the exact plan rule version that made the call. A XanoTS proof for Business Logic Centralization."
+    />
+    <style>
+      :root {
+        --bg: #0a0a0b;
+        --panel: #141416;
+        --panel-2: #1b1b1e;
+        --border: #2a2a2e;
+        --fg: #ededef;
+        --muted: #a1a1aa;
+        --primary: #34d399;
+        --primary-fg: #052e1b;
+        --accent: #93c5fd;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: radial-gradient(1200px 600px at 50% -10%, #16241d 0%, var(--bg) 55%);
+        color: var(--fg);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        border: 1px solid var(--border); border-radius: 999px;
+        padding: 4px 12px; font-size: 13px; color: var(--muted); background: var(--panel);
+      }
+      header.hero { padding: 72px 0 40px; text-align: center; }
+      .hero h1 { font-size: 40px; line-height: 1.15; margin: 20px 0 12px; letter-spacing: -0.02em; }
+      .hero p.tag { font-size: 19px; color: var(--muted); max-width: 720px; margin: 0 auto 18px; }
+      .meta { color: var(--muted); font-size: 14px; margin: 8px 0 26px; }
+      .meta strong { color: var(--fg); font-weight: 600; }
+      .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        border-radius: 10px; padding: 11px 20px; font-size: 15px; font-weight: 600;
+        border: 1px solid transparent; cursor: pointer; transition: all 0.15s ease;
+      }
+      .btn.primary { background: var(--primary); color: var(--primary-fg); }
+      .btn.primary:hover { filter: brightness(1.08); text-decoration: none; }
+      .btn.ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+      .btn.ghost:hover { background: var(--panel-2); text-decoration: none; }
+      .shot {
+        margin: 44px auto 0; max-width: 940px;
+        border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+        box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.8);
+      }
+      .shot img { display: block; width: 100%; height: auto; }
+      section { padding: 46px 0; border-top: 1px solid var(--border); }
+      section h2 { font-size: 24px; letter-spacing: -0.01em; margin: 0 0 8px; }
+      section p.lede { color: var(--muted); margin: 0 0 24px; max-width: 720px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+      .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+      .card h3 { margin: 0 0 6px; font-size: 16px; }
+      .card p { margin: 0; color: var(--muted); font-size: 14px; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { color: var(--muted); font-weight: 600; }
+      td code { color: var(--accent); }
+      .pill { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+      .pill.admin { color: var(--primary); border-color: #1f4d3a; background: #0f2019; }
+      pre {
+        background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+        padding: 16px 18px; overflow-x: auto; color: #e4e4e7; font-size: 13.5px; line-height: 1.55;
+      }
+      .note { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 8px; padding: 14px 16px; color: var(--muted); font-size: 14px; }
+      footer { padding: 40px 0 64px; color: var(--muted); font-size: 13px; text-align: center; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <span class="badge">Play 1 · Business Logic Centralization · Insurance</span>
+        <h1>Insurance Eligibility &amp; Benefit Engine</h1>
+        <p class="tag">
+          One governed API that decides insurance eligibility the same way for every system, and returns
+          the exact plan rule version that made the call.
+        </p>
+        <p class="meta"><strong>6 tables</strong> · <strong>10 API endpoints</strong> · <strong>2 RBAC roles</strong> · authored in TypeScript with @xanots/sdk</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/xano-scratch/insurance-eligibility-benefit-engine">View on GitHub</a>
+          <a class="btn ghost" href="#use">Use this template</a>
+        </div>
+      </header>
+
+      <div class="shot">
+        <img src="screenshot.png" alt="The eligibility check screen showing a governed decision, the coverage tier, and the rule version that decided it" />
+      </div>
+
+      <section>
+        <h2>What it demonstrates</h2>
+        <p class="lede">
+          An insurer asks the same eligibility question in a claims tool, a member portal, and a support
+          console. When each one keeps its own copy of the plan rules, the answers drift and no one can
+          explain a past decision. This backend makes that logic one thing.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <h3>One decision, one place</h3>
+            <p>A single check endpoint resolves the active rule, evaluates the gates, and returns the decision, the tier, and the rule version. Every caller gets the same answer.</p>
+          </div>
+          <div class="card">
+            <h3>Versioned rules</h3>
+            <p>One active rule per plan and benefit, with a history of superseded versions. A decision records the version that made it.</p>
+          </div>
+          <div class="card">
+            <h3>An audit trail</h3>
+            <p>Every check writes a row with the decision, reason, rule version, and tier. The log is filterable by member, benefit, or decision.</p>
+          </div>
+          <div class="card">
+            <h3>API-layer RBAC</h3>
+            <p>Two roles enforced at the endpoint, read fresh from the staff table on every call. Middleware-style access control, not row-level security.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>API surface</h2>
+        <p class="lede">Public endpoints need no token. Admin endpoints require a benefits_admin bearer token.</p>
+        <table>
+          <thead>
+            <tr><th>Verb</th><th>Path</th><th>What it does</th><th>Access</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>POST</td><td><code>/api:ie_eligibility/check</code></td><td>The governed decision, plus an audit write</td><td><span class="pill">Public</span></td></tr>
+            <tr><td>GET</td><td><code>/api:ie_eligibility/entitlements/{member_number}</code></td><td>Every benefit the member currently passes</td><td><span class="pill">Public</span></td></tr>
+            <tr><td>GET</td><td><code>/api:ie_eligibility/members</code></td><td>Member directory with plan and tenure</td><td><span class="pill">Public</span></td></tr>
+            <tr><td>GET</td><td><code>/api:ie_eligibility/catalog</code></td><td>The active benefit rules with plan and tier</td><td><span class="pill">Public</span></td></tr>
+            <tr><td>GET</td><td><code>/api:ie_rules/detail/{benefit_rule_id}</code></td><td>One rule plus its full version history</td><td><span class="pill">Public</span></td></tr>
+            <tr><td>GET</td><td><code>/api:ie_rules/list</code></td><td>Every rule version across every plan</td><td><span class="pill admin">benefits_admin</span></td></tr>
+            <tr><td>GET</td><td><code>/api:ie_audit/checks</code></td><td>The decision log, filterable and joined</td><td><span class="pill admin">benefits_admin</span></td></tr>
+            <tr><td>POST</td><td><code>/api:ie_seed/reset</code></td><td>Clear the log and reload the demo data</td><td><span class="pill admin">benefits_admin</span></td></tr>
+            <tr><td>POST</td><td><code>/api:ie_auth/login</code></td><td>Verify a credential and mint a role token</td><td><span class="pill">Public</span></td></tr>
+            <tr><td>GET</td><td><code>/api:ie_auth/me</code></td><td>The signed-in caller's record</td><td><span class="pill">Auth</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>The screens</h2>
+        <div class="grid">
+          <div class="card"><h3>Eligibility check</h3><p>Pick a member and a benefit, run the check, see the decision with the tier, the reason, and the deciding rule version.</p></div>
+          <div class="card"><h3>Member entitlements</h3><p>Every benefit a member is covered for right now, run through the same gates.</p></div>
+          <div class="card"><h3>Benefit rules</h3><p>The active rule for each plan and benefit, with its full version history, including superseded versions.</p></div>
+          <div class="card"><h3>Audit trail</h3><p>The decision log, newest first, joined to the rule version and tier each check used.</p></div>
+          <div class="card"><h3>Governance</h3><p>Sign in as either role and run an access probe that shows the API return 401, 403, and 200.</p></div>
+        </div>
+      </section>
+
+      <section id="use">
+        <h2>Use this template</h2>
+        <p class="lede">
+          Point your coding agent at the repo, or clone it yourself. Either way you get a live, governed
+          Xano backend in about a minute.
+        </p>
+        <pre><code>Use the XanoTS template at
+https://github.com/xano-scratch/insurance-eligibility-benefit-engine
+as a starting point. Clone it, run npm install, then npx xanots login and
+npm run xano:deploy to get a live governed eligibility backend I can read
+and extend. Then help me adapt the plan rules to my own benefits.</code></pre>
+        <p class="lede" style="margin-top: 22px">Or run it directly:</p>
+        <pre><code>git clone https://github.com/xano-scratch/insurance-eligibility-benefit-engine
+cd insurance-eligibility-benefit-engine
+npm install
+npx xanots login
+npm run xano:deploy</code></pre>
+        <div class="note">
+          The frontend and backend deploy to a fresh, auto-expiring ephemeral environment that self-seeds,
+          so it is browsable the moment the URL prints. Any live preview link is disposable and re-deploys
+          for fresh links. Demo accounts and passwords are in the README, seeded on purpose for the
+          throwaway environment.
+        </div>
+      </section>
+
+      <footer>
+        Built with XanoTS. The eligibility logic lives in one versioned, auditable API layer. Access is
+        controlled at the API layer by role, not row-level security.
+      </footer>
+    </div>
+  </body>
+</html>

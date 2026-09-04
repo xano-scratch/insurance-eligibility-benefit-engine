@@ -8,8 +8,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "xano:export": "tsc --noEmit && xanots export ./xano/index.ts --out workspace.json",
-    "xano:deploy": "npm run build && xanots deploy ./xano/index.ts --static ./frontend/dist",
+    "xano:export": "tsc --noEmit && xanots export ./xano/index.ts --out workspace.json --lock",
+    "xano:deploy": "npm run build && xanots deploy ./xano/index.ts --static ./frontend/dist --lock --allow-seed-in-static",
     "xano:check": "tsc --noEmit && xanots export ./xano/index.ts --out workspace.json --frozen-lock",
     "xano:test": "xanots test run-all"
   },
@@ -17,7 +17,6 @@
     "@xanots/sdk": ">=0.0.17 <0.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cn": "^0.2.5",
     "lucide-react": "^0.475.0",
     "radix-ui": "^1.6.7",
     "react": "^19.1.0",
