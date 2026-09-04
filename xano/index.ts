@@ -1,68 +1,49 @@
 import { workspace } from "@xanots/sdk";
 
+// Tables
+import { plans } from "./tables/plans.js";
+import { coverageTiers } from "./tables/coverage-tiers.js";
+import { members } from "./tables/members.js";
+import { benefitRules } from "./tables/benefit-rules.js";
+import { eligibilityChecks } from "./tables/eligibility-checks.js";
+import { staff } from "./tables/staff.js";
+
+// API groups
+import { eligibilityApi, rulesApi, auditApi, seedApi, authApi } from "./api/groups.js";
+
+// Endpoints
+import { checkQuery } from "./api/check.js";
+import { entitlementsQuery } from "./api/entitlements.js";
+import { membersQuery } from "./api/members.js";
+import { catalogQuery } from "./api/catalog.js";
+import { ruleDetailQuery } from "./api/rules-detail.js";
+import { rulesListQuery } from "./api/rules-list.js";
+import { auditChecksQuery } from "./api/audit-checks.js";
+import { seedResetQuery } from "./api/seed-reset.js";
+import { loginQuery } from "./api/auth-login.js";
+import { meQuery } from "./api/auth-me.js";
+
 /**
- * The insurance-eligibility-benefit-engine backend.
+ * Insurance Eligibility & Benefit Engine.
  *
- * A workspace is assembled by registering typed objects onto a workspace()
- * instance and default-exporting it. This starter is intentionally empty and
- * already compiles + deploys — add your first table and endpoint below.
- *
- * ── Add your first table + endpoint ─────────────────────────────────────────
- *
- *   import { workspace, table, apiGroup, query, f, input, s, ref, c, expect, resp } from "@xanots/sdk";
- *
- *   const notes = table({
- *     name: "notes",
- *     // `id` (int PK) + `created_at` (epochms) are auto-injected.
- *     schema: {
- *       body: f.text({ required: true }),
- *     },
- *   });
- *
- *   const api = apiGroup({ name: "notes", canonical: "notes" }); // pin the slug
- *
- *   const createNote = query({
- *     name: "create_note",
- *     verb: "POST",
- *     apiGroup: api,
- *     input: { body: input.text({ required: true }) },
- *     // ...build the stack with the s.* statement helpers...
- *     // Assertions ride along with the object they cover; `npm run xano:test`
- *     // runs them against whatever you last deployed.
- *     tests: [
- *       {
- *         name: "creates a note",
- *         input: { body: c.text("hello") },
- *         expect: [expect.to_be_defined(resp())],
- *       },
- *     ],
- *   });
- *
- *   export default workspace("insurance-eligibility-benefit-engine")
- *     .registerTables([notes])
- *     .registerApiGroups([api])
- *     .registerQueries([createNote]);
- *
- * Discover the exact builders and options from the package's own types and its
- * shipped docs — read `node_modules/@xanots/sdk/llms.txt` first (it ends with a
- * map of the `llms/*.md` topic files), then the .d.ts files.
- * See `xano/EXAMPLE.md` for the full walkthrough.
- *
- * ── Optional add-ons ─────────────────────────────────────────────────────────
- * Nothing below is installed. Reach for an add-on when you need it, not before.
- *
- * @xanots/auth registers turnkey auth (user/login/signup) onto this same
- * workspace. Install it first (`xanots marketplace install @xanots/auth`), then
- * `registerAuth(workspace("insurance-eligibility-benefit-engine"), { canonical: "authn" })` returns the
- * instance to chain your own .register*() calls onto:
- *
- *   registerAuth(workspace("insurance-eligibility-benefit-engine"), { canonical: "authn" })
- *     .registerTables([notes])
- *     .registerApiGroups([api])
- *     .registerQueries([createNote]);
- *
- * That is not the whole catalogue. `xanots marketplace list` prints every
- * published add-on and `xanots marketplace details <package>` prints what one
- * installs plus the registration to paste here — no login required.
+ * One governed API that an insurer's claims tools and member portals all call to
+ * answer the same question the same way: is this member eligible for this
+ * benefit, at what coverage tier, and which plan rule version decided it. The
+ * plan eligibility logic lives here, in one versioned, auditable layer, instead
+ * of being re-encoded in every front-end system.
  */
-export default workspace("insurance-eligibility-benefit-engine");
+export default workspace("insurance-eligibility-benefit-engine")
+  .registerTables([plans, coverageTiers, members, benefitRules, eligibilityChecks, staff])
+  .registerApiGroups([eligibilityApi, rulesApi, auditApi, seedApi, authApi])
+  .registerQueries([
+    checkQuery,
+    entitlementsQuery,
+    membersQuery,
+    catalogQuery,
+    ruleDetailQuery,
+    rulesListQuery,
+    auditChecksQuery,
+    seedResetQuery,
+    loginQuery,
+    meQuery,
+  ]);

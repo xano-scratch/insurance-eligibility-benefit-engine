@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "objects": {
+    "app:audit": {
+      "guid": "cad4174a6426a42a1e453b38ee821110",
+      "canonical": "ie_audit",
+      "canonical_source": "code"
+    },
+    "app:auth": {
+      "guid": "4fe67f5a2d319eaaca7996700f27edd8",
+      "canonical": "ie_auth",
+      "canonical_source": "code"
+    },
+    "app:eligibility": {
+      "guid": "e3102acd931faf5a67731a0c7b2d7d7a",
+      "canonical": "ie_eligibility",
+      "canonical_source": "code"
+    },
+    "app:rules": {
+      "guid": "0abdef5d9864e4e6552a28a3a06b23de",
+      "canonical": "ie_rules",
+      "canonical_source": "code"
+    },
+    "app:seed": {
+      "guid": "7110fabc369b25f0581044e47d499906",
+      "canonical": "ie_seed",
+      "canonical_source": "code"
+    },
+    "dbo:benefit_rules": {
+      "guid": "a4dce037575c30f2ae3b2a468baa8a34"
+    },
+    "dbo:coverage_tiers": {
+      "guid": "7cfdb539819dbd55db153e1dce04c344"
+    },
+    "dbo:eligibility_checks": {
+      "guid": "9f06e1abac8419efa9af3d102a0a5929"
+    },
+    "dbo:members": {
+      "guid": "73429aed6abe43fb041daf0a4c6256a3"
+    },
+    "dbo:plans": {
+      "guid": "5f79df842dfc66ffd76eeb07d35444e7"
+    },
+    "dbo:staff": {
+      "guid": "45722426fb164d5cf871016a08397ac1"
+    },
+    "query:audit|GET|checks": {
+      "guid": "2e46cca94afb30bb552d9167f16b4669"
+    },
+    "query:auth|GET|me": {
+      "guid": "bfd70d24f92356209c72088852ec320e"
+    },
+    "query:auth|POST|login": {
+      "guid": "d39d74f907baeb484e9c93358362998a"
+    },
+    "query:eligibility|GET|catalog": {
+      "guid": "75d1b6b14ed1891068230b9457691682"
+    },
+    "query:eligibility|GET|entitlements/{member_number}": {
+      "guid": "2d2c851339e467d8358b0c66dcfa1c41"
+    },
+    "query:eligibility|GET|members": {
+      "guid": "e6a4e696ec2d8b9b718648f246c2d789"
+    },
+    "query:eligibility|POST|check": {
+      "guid": "e39d8a30ba53863c207d8b73d960e3eb"
+    },
+    "query:rules|GET|detail/{benefit_rule_id}": {
+      "guid": "999af151af1bd401c58d4df577c12fa4"
+    },
+    "query:rules|GET|list": {
+      "guid": "970a46613dac3d0209a85e8d02045728"
+    },
+    "query:seed|POST|reset": {
+      "guid": "af17c06e19c07ac23c8520e2e761841a"
+    }
+  }
+}
